@@ -1,4 +1,4 @@
-# bmi-calculator2
+# bmi-calculator 1.0
 
 ## Project setup
 ```
