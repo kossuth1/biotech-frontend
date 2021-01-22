@@ -1,26 +1,47 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Header :loading="loading">BMI kalkulátor</Header>
+  <div class="container py-5 position-relative">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import { Header } from './components';
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  components: { Header },
+  data: () => ({
+    mounted: false,
+    loading: true
+  }),
+  created() {
+    const loading = setInterval(() => {
+      if (this.mounted) {
+        clearInterval(loading);
+        this.loading = false;
+      }
+    }, 1000);
+  },
+  mounted() {
+    this.mounted = true;
   }
-}
+};
 </script>
 
 <style lang="scss">
+@font-face {
+  font-family: Roboto;
+  src: url('./assets/fonts/Roboto-Regular.ttf');
+}
+
+body {
+  background-image: url('./assets/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  min-height: 100vh;
+  background-color: rgba(255, 255, 255, 0.9);
 }
 </style>
